@@ -61,8 +61,8 @@ public class qqgroupTest {
 		//WebDriverWait wait = new WebDriverWait(dr, 10);
 		
 		//输入账号密码
-		dr.findElement(By.xpath("//*[@id=\"u\"]")).sendKeys("1144159908");
-		dr.findElement(By.xpath("//*[@id=\"p\"]")).sendKeys("joe,szh5192");
+		dr.findElement(By.xpath("//*[@id=\"u\"]")).sendKeys("account");
+		dr.findElement(By.xpath("//*[@id=\"p\"]")).sendKeys("password");
 		//设置状态
 		dr.findElement(By.xpath("//*[@id=\"loginState\"]")).click();
 		dr.findElement(By.xpath("/html/body/ul/li[6]")).click();
