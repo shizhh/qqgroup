@@ -1,0 +1,41 @@
+//*******************************************************************************
+		//获取群消息
+		//long 922 3372 0368 5477 5807
+		//若一条消息采集需要0.3s，则采集1一亿条消息需要347天
+		//定义long 足够系统维持一年
+		long num = 1L;
+		
+		int trytimes = 1;
+		while(trytimes < 10000)
+		{
+			if (ifHaveNewMsgs(dr, num)){
+//				trytimes = 1;
+				WebElement chat = dr.findElement(By.xpath("//div[@id=\"panelBody-5\"]/div[p]["+num+"]"));
+				System.out.print(chat.findElement(By.className("chat_nick")).getText()+": ");
+				System.out.println(chat.findElement(By.className("chat_content")).getText());
+				System.out.println("num="+num);
+				num += 1;
+				trytimes = 1;
+			}
+			else {
+				System.out.println("trytimes="+trytimes);
+				trytimes += 1;
+//				Thread.sleep(500);
+			}
+		}
+		
+		
+		//*******************************************************************************
+	public static boolean ifHaveNewMsgs(WebDriver dl,long count)
+	{
+		try{
+			dl.findElement(By.xpath("//div[@id=\"panelBody-5\"]/div[p]["+count+"]/p[@class=\"chat_nick\"]")).getText();
+			return true;
+		}catch(NoSuchElementException e){
+			return false;
+		}catch(StaleElementReferenceException ex){
+			return false;
+		}
+	}
+	//*******************************************************************************
+}
